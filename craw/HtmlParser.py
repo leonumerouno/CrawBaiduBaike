@@ -8,20 +8,16 @@ class HtmlParser(object):
     def tuples(self, url):
         html_cont = self.downloader.download(url)
         soup = BeautifulSoup(html_cont, 'lxml', from_encoding='utf-8')
-        htmlPrettify = soup.prettify()
 
         titleTag = soup.find_all("dt")
-        titleValue1 = soup.find_all("dd")
-        titleValue2 = soup.find_all("span")
+        titleValue1 = soup.select('dd')
 
-        tmp = []
         titleValue = []
         for dd in titleValue1:
-            if dd.text != "":
-                tmp.append(dd.text)
-        for span in titleValue2:
-            if span.text in tmp:
-                titleValue.append(span.text)
+            attr = dd.attrs
+            if not bool(attr):
+                continue
+            titleValue.append(dd.text)
 
         tags = []
 
@@ -37,7 +33,6 @@ class HtmlParser(object):
         html_cont = self.downloader.download(url)
 
         soup = BeautifulSoup(html_cont, 'lxml', from_encoding='utf-8')
-        htmlPrettify = soup.prettify()
 
         titleScript = soup.find_all("script")
         if len(titleScript) == 0:

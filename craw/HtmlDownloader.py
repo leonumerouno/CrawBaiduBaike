@@ -10,12 +10,12 @@ class HtmlDownloader(object):
         s = Service('chromedriver.exe')
 
         driver = webdriver.Chrome(service=s, options=options)
-        sleep(10)
+        sleep(5)
         driver.get(url)
         driver.execute_script('window.scrollTo(0,document.body.scrollHeight)')
-        sleep(10)
+        sleep(5)
 
         page_source = driver.page_source
-        sleep(10)
+        sleep(5)
 
         return page_source
