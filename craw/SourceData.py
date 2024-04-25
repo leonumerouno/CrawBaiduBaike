@@ -6,13 +6,13 @@ class SourceData(object):
         self.conn = pymysql.connect(
         host='127.0.0.1',
         user='root',
-        password='',
+        password='123456',
         port=3306,
         database='knowledge'
     )
 
     def get_entity_names(self):
-        sql_query = "select name from knowledge.entity_names where id between 1000 and 2000"
+        sql_query = "select name from knowledge.entity_names where id between 30001 and 32000"
 
         cursor = self.conn.cursor(pymysql.cursors.DictCursor)
 

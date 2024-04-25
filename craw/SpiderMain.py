@@ -14,7 +14,7 @@ class Spider_Main(object):
         names = self.sourcedata.get_entity_names()
         for name in names:
             now_url = self.urls.create_url(name)
-            # print(now_url)
+            print(now_url)
             urls,dif_names,upper_names = self.parser.get_difnames_url(now_url)
 
             if len(urls) > 0:

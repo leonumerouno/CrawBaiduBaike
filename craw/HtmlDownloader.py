@@ -13,7 +13,7 @@ class HtmlDownloader(object):
         sleep(5)
         driver.get(url)
         driver.execute_script('window.scrollTo(0,document.body.scrollHeight)')
-        sleep(5)
+        sleep(10)
 
         page_source = driver.page_source
         sleep(5)
