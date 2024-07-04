@@ -10,7 +10,7 @@ class SourceData(object):
     )
 
     def get_entity_names(self):
-        sql_query = ("select name from knowledge.entity_names where id between 52000 and 53000")
+        sql_query = ("select name from knowledge.entity_names where id between 80000 and 85000")
 
         cursor = self.conn.cursor(pymysql.cursors.DictCursor)
 
