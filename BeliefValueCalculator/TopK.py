@@ -4,13 +4,14 @@ import pymysql
 import pickle
 import Dbquery
 from word_similarity import WordSimilarity2010
+import json
 
 class TopK(object):
 
     def init(self):
-        self.dbquery = Dbquery().Dbquery()
+        self.dbquery = Dbquery.Dbquery()
         self.model = SentenceTransformer("distiluse-base-multilingual-cased-v2")
-        self.embedder = SentenceTransformer("bert-base-chinese")
+        self.embedder = SentenceTransformer("distiluse-base-multilingual-cased-v2")
         self.ws_tool = WordSimilarity2010()
 
     def Predata(self):
@@ -40,14 +41,31 @@ class TopK(object):
         query_embedding = self.embedder.encode(query, convert_to_tensor=True)
 
         cos_scores = util.cos_sim(query_embedding, corpus_embeddings)[0]
-        top_results = torch.topk(cos_scores, 25)
+        top_results = torch.topk(cos_scores, 5)
 
         maxBeliefValue = 0
+        beliefvalues = []
         for score, idx in zip(top_results[0], top_results[1]):
             topk.append(corpus[idx])
+            beliefvalues.append(score)
             maxBeliefValue = max(maxBeliefValue,score)
-
-        return topk,maxBeliefValue
+        return topk,maxBeliefValue,beliefvalues
 
     def WordSimilarity(self,word1,word2):
         return self.ws_tool.similarity(word1, word2)
+
+
+if __name__ =="__main__":
+    # topk = TopK()
+    # topk.init()
+    # with open('abc.txt', 'r', encoding='utf-8') as f:
+    #     queries = f.readlines()
+    # for query in queries:
+    #     realquery = query.split(" ")[1]
+    #     realquerytopk,realquerybeliefvalue,beliefvalues = topk.similarity(realquery)
+    #     print(realquerytopk,beliefvalues)
+    fileName = 'out.txt'
+    with open(fileName, 'r', encoding='utf-8') as file:
+        fileData = file.readline()
+
+    fileDataJson = json.loads(fileData)
