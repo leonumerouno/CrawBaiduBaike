@@ -1,5 +1,8 @@
+from time import sleep
+
 import requests
 import re
+from collections import defaultdict
 
 class WordTear(object):
     def __init__(self):
@@ -9,79 +12,92 @@ class WordTear(object):
         }
         self.Param = {}
         self.stopwords = []
+        self.getStopWords()
 
     def getStopWords(self):
-        stop_words = []
+        stop_words = set()
         with open('cn_stopwords.txt', 'r', encoding='utf-8') as f:
-            cn_stop_words = f.readlines()
+            for line in f.readlines():
+                stop_words.add(line.split("\n")[0])
         with open('scu_stopwords.txt', 'r', encoding='utf-8') as f:
-            scu_stop_words = f.readlines()
-        for word in cn_stop_words:
-            if word not in stop_words:
-                stop_words.append(word)
-        for word in scu_stop_words:
-            if word not in stop_words:
-                stop_words.append(word)
-        self.stopwords = stop_words
-    def tear(self,segstr):
-        self.Param = {
-            'secret': 'qt80oh3psexeifkh5don6jxidicygz4ibbq5um3z',
-            'segstr': segstr
-        }
-        resp = requests.get(self.url, params=self.Param, headers=self.header)
-        split_words = resp.text.split(" ")
-        wordset = set()
-        wordfreq = dict()
-        wordcount = 0
-        for word in split_words:
-            split_word = word.split("/")
-            if split_word[1] != 'w' and split_word[1] not in self.stopwords:
-                if split_word[0] in wordfreq:
-                    wordfreq[split_word[0]] += 1
-                else:
-                    wordfreq[split_word[0]] = 1
-                    wordset.add(split_word[0])
-                wordcount += 1
-        return wordset,wordfreq,wordcount
+            for line in f.readlines():
+                stop_words.add(line.split("\n")[0])
+        self.stopwords = list(stop_words)
 
-    def tear_into_words(self,segstr):
-        word_list = []
+    def get_names(self,segstr):
         self.Param = {
             'secret': 'qt80oh3psexeifkh5don6jxidicygz4ibbq5um3z',
-            'segstr': segstr
+            'segstr': segstr,
+            'mode': 1
         }
         resp = requests.get(self.url, params=self.Param, headers=self.header)
         split_words = resp.text.split(" ")
-        for word in split_words:
-            split_word = word.split("/")
-            if split_word[1] != 'w' and split_word[1] not in self.stopwords:
-                word_list.append(split_word)
-        return word_list
+        entities = []
+        for split_word in split_words:
+            split_word = split_word.split("/")
+            if len(split_word) < 2:
+                continue
+            else:
+                split_word_type = split_word[1]
+                if split_word_type[0] == 'n':
+                    entities.append(split_word[0])
+        return entities
 
-    def get_verb(self,segstr):
-        verb = ""
+    def tear_context(self,segstr):
         self.Param = {
             'secret': 'qt80oh3psexeifkh5don6jxidicygz4ibbq5um3z',
-            'segstr': segstr
+            'segstr': segstr,
+            'mode': 0
         }
         resp = requests.get(self.url, params=self.Param, headers=self.header)
         split_words = resp.text.split(" ")
-        for word in split_words:
-            split_word = word.split("/")
-            if 'n' not in split_word[1]:
-                verb += split_word[1]
-        return verb
 
-    def get_entity_list(self,segstr):
-        entity_list = []
-        self.Param = {
-            'secret': 'qt80oh3psexeifkh5don6jxidicygz4ibbq5um3z',
-            'segstr': segstr
-        }
-        resp = requests.get(self.url, params=self.Param, headers=self.header)
-        split_words = resp.text.split(" ")
-        for word in split_words:
-            split_word = word.split("/")
-            if 'n' in split_word[1]:
-                entity_list.append(word)
-        return entity_list
+        tot = 0
+        word_list = set()
+        dict = defaultdict(float)
+
+        for split_word in split_words:
+            if split_word == '':
+                continue
+            split_word = split_word.split("/")
+            if '[' in split_word[0]:
+                split_word[0] = split_word[0].split('[')[1]
+            if ']' in split_word[0]:
+                split_word[0] = split_word[0].split(']')[0]
+            if split_word[1] == 'w' or split_word[0] in self.stopwords:
+                continue
+            tot+=1
+            word_list.add(split_word[0])
+            dict[split_word[0]] += 1
+
+        for split_word in word_list:
+            dict[split_word] = dict[split_word] / tot
+
+        return dict
+
+    def tear_entity(self,sentence_list):
+        word_list = set()
+        for sentence in sentence_list:
+            self.Param = {
+                'secret': 'qt80oh3psexeifkh5don6jxidicygz4ibbq5um3z',
+                'segstr': sentence,
+                'mode': 0
+            }
+            resp = requests.get(self.url, params=self.Param, headers=self.header)
+            sleep(0.01)
+            split_words = resp.text.split(" ")
+            for split_word in split_words:
+                if split_word == '':
+                    continue
+                split_word = split_word.split("/")
+                if '[' in split_word[0]:
+                    split_word[0] = split_word[0].split('[')[1]
+                if ']' in split_word[0]:
+                    split_word[0] = split_word[0].split(']')[0]
+                if len(split_word) > 1 and split_word[1] == 'w' or split_word[0] in self.stopwords:
+                    continue
+                word_list.add(split_word[0])
+        return list(word_list)
+
+
+
