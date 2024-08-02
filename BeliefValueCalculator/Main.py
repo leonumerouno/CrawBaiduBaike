@@ -23,7 +23,7 @@ class BeliefValueCalculator(object):
         self.Cracking.init()
         self.TopK.init()
 
-#条目 {许多短句的集合}  短句->命题{简单句的集合}
+#条目 {许多短句的集合}  短句->命题{简单句的集合
 #计算条目的可信度->短句的可信度的带权和->所有命题的带权和
 #想办法先计算出每个命题的可信度值
 
