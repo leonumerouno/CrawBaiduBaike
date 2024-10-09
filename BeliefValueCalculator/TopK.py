@@ -13,6 +13,17 @@ class TopK(object):
         self.embedder = SentenceTransformer("distiluse-base-multilingual-cased-v2")
         self.ws_tool = WordSimilarity2010()
 
+    def construct(self,proposition,name):
+        key = proposition['key']
+        value = proposition['value']
+        return name + "的" + key + "是" + value
+
+    def sentences_prepare(self,propositions,name):
+        res = []
+        for proposition in propositions:
+            res.append(self.construct(proposition,name))
+        return res
+
     def Predata(self):
         result = self.dbquery.select_from_knowledge_people()
 
@@ -28,6 +39,8 @@ class TopK(object):
             pickle.dump({"sentences": sentences, "embeddings": embeddings}, fOut, protocol=pickle.HIGHEST_PROTOCOL)
 
     def Sentencesimilarity(self,query,embeddings):
+        if len(embeddings) == 0:
+            return "",0
         corpus_embeddings = self.embedder.encode(embeddings,convert_to_tensor=True)
         query_embedding = self.embedder.encode(query,convert_to_tensor=True)
         similarity_scores = util.cos_sim(query_embedding, corpus_embeddings)[0]
@@ -45,4 +58,6 @@ class TopK(object):
 
     def WordSimilarity(self,word1,word2):
         return self.ws_tool.similarity(word1, word2)
+
+
 

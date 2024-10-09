@@ -24,6 +24,27 @@ class WordTear(object):
                 stop_words.add(line.split("\n")[0])
         self.stopwords = list(stop_words)
 
+    def get_value(self, key, segstr):
+        self.Param = {
+            'secret': 'qt80oh3psexeifkh5don6jxidicygz4ibbq5um3z',
+            'segstr': segstr,
+            'mode': 1
+        }
+        resp = requests.get(self.url, params=self.Param, headers=self.header)
+        split_words = resp.text.split(" ")
+        word_list = []
+        for split_word in split_words:
+            if split_word != "":
+                word, tag = split_word.split("/")
+                if tag == key:
+                    word_list.append(word)
+        if len(word_list) == 1:
+            return word_list[0]
+        elif len(word_list) == 0:
+            return ""
+        else:
+            return word_list
+
     def get_names(self,segstr):
         self.Param = {
             'secret': 'qt80oh3psexeifkh5don6jxidicygz4ibbq5um3z',
@@ -39,7 +60,7 @@ class WordTear(object):
                 continue
             else:
                 split_word_type = split_word[1]
-                if split_word_type[0] == 'n':
+                if 'n' in split_word_type and split_word_type != 'nnt':
                     entities.append(split_word[0])
         return entities
 
@@ -99,5 +120,13 @@ class WordTear(object):
                 word_list.add(split_word[0])
         return list(word_list)
 
+    def tear(self,segstr):
+        self.Param = {
+            'secret': 'qt80oh3psexeifkh5don6jxidicygz4ibbq5um3z',
+            'segstr': segstr,
+        }
+        resp = requests.get(self.url, params=self.Param, headers=self.header)
+        sleep(0.01)
+        return resp.text
 
 

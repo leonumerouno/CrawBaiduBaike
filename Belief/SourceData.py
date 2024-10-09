@@ -8,18 +8,35 @@ class SourceData(object):
         port=3306,
         database='knowledge'
     )
+
+    def update_name_view(self,id,view):
+        sql_query = "update knowledge.name_difnames set view_times = %s where id = %s"
+
+        cursor = self.conn.cursor(pymysql.cursors.DictCursor)
+
+        try:
+            cursor.execute(sql_query, (view,id))
+            self.conn.commit()
+        except Exception as e:
+            self.conn.rollback()
+            print(e)
+
+
     def get_entity_urls(self):
-        sql_query = "select url from knowledge.name_difnames where id between 1000 and 5000"
+        sql_query = "select id,url from knowledge.name_difnames where id > 2667 and id < 10000"
 
         cursor = self.conn.cursor(pymysql.cursors.DictCursor)
 
         cursor.execute(sql_query)
         result = cursor.fetchall()
 
+        ids = []
         urls = []
         for i in result:
+            ids.append(i['id'])
             urls.append(i['url'])
-        return urls
+
+        return ids,urls
 
     def insert_into_create_history(self,difname,url,edited_times,history_url):
         sql_insert = 'insert into knowledge.create_history(entity_name,entity_url,edited_times,create_history_url) values(%s,%s,%s,%s)'

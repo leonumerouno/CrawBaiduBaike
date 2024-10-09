@@ -19,26 +19,38 @@ class Dbquery(object):
 
         return result
 
-    def select_from_knowledge_people_by_name_like(self,names):
+    def select_from_knowledge_people_by_name_like(self,name):
         res = []
-        for name in names:
-            sql_query = "select * from knowledge.knowledge_people where value LIKE '%" + name + "%'"
+        sql_query = "select name from knowledge.knowledge_people where value LIKE '%" + name + "%'"
 
-            cursor = self.conn.cursor(pymysql.cursors.DictCursor)
-            cursor.execute(sql_query)
+        cursor = self.conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(sql_query)
 
-            results = cursor.fetchall()
+        results = cursor.fetchall()
 
-            for result in results:
-                res.append(result)
+        for result in results:
+            uuid = result['name']
+            sentences = self.select_from_knowledge_people_by_uuid(uuid)
+            for sentence in sentences:
+                res.append(sentence)
 
         return res
 
-    def select_from_knowledge_people_by_name(self, name):
+    def select_from_knowledge_people_by_uuid(self, uuid):
         sql_query = "select * from knowledge.knowledge_people where name = %s"
 
         cursor = self.conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(sql_query,(name))
+        cursor.execute(sql_query,(uuid))
+
+        result = cursor.fetchall()
+
+        return result
+
+    def select_name_from_knowledge_people_by_uuid(self, uuid):
+        sql_query = "select value from knowledge.knowledge_people where name = %s and knowledge_people.key = '中文名/姓名/名字'"
+
+        cursor = self.conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(sql_query,(uuid))
 
         result = cursor.fetchall()
 

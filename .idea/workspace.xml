@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b18d7676-9e5f-48b5-9f61-e1cae21b0343" name="Changes" comment="Version 1.3" />
+    <list default="true" id="b18d7676-9e5f-48b5-9f61-e1cae21b0343" name="Changes" comment="Version 1.3">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Belief/HtmlDownloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/Belief/HtmlDownloader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Belief/HtmlParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Belief/HtmlParser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Belief/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Belief/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Belief/SourceData.py" beforeDir="false" afterPath="$PROJECT_DIR$/Belief/SourceData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Belief/chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Belief/chromedriver.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeliefValueCalculator/Cracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/BeliefValueCalculator/Cracking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeliefValueCalculator/Dbquery.py" beforeDir="false" afterPath="$PROJECT_DIR$/BeliefValueCalculator/Dbquery.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeliefValueCalculator/EntityLink.py" beforeDir="false" afterPath="$PROJECT_DIR$/BeliefValueCalculator/EntityLink.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeliefValueCalculator/RealEntity.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeliefValueCalculator/TopK.py" beforeDir="false" afterPath="$PROJECT_DIR$/BeliefValueCalculator/TopK.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeliefValueCalculator/WordTear.py" beforeDir="false" afterPath="$PROJECT_DIR$/BeliefValueCalculator/WordTear.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeliefValueCalculator/abc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BeliefValueCalculator/abc.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeliefValueCalculator/context.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BeliefValueCalculator/context.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeliefValueCalculator/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/BeliefValueCalculator/test.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,8 +59,8 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;system111&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Neo4jAndPy&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+    &quot;last_opened_file_path&quot;: &quot;D:/Neo4jAndPy/BeliefValueCalculator&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -59,49 +75,7 @@
       <recent name="D:\Neo4jAndPy\craw" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.SpiderMain">
-    <configuration name="111 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="SRTP-2024" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/111.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Cracking" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="SRTP-2024" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BeliefValueCalculator" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BeliefValueCalculator/Cracking.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.test">
     <configuration name="Main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="SRTP-2024" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -115,6 +89,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BeliefValueCalculator/Main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SRTP-2024" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Belief" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Belief/Main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -187,13 +182,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SRTP-2024" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BeliefValueCalculator" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BeliefValueCalculator/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.Main" />
         <item itemvalue="Python.WordTear" />
         <item itemvalue="Python.TopK" />
         <item itemvalue="Python.Main (1)" />
-        <item itemvalue="Python.Cracking" />
-        <item itemvalue="Python.111 (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -318,7 +334,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722603485255</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Version 1.3">
+      <option name="closed" value="true" />
+      <created>1722603564234</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1722603564234</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

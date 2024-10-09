@@ -2,10 +2,23 @@ import HtmlDownloader
 import UrlManager
 import json
 from bs4 import BeautifulSoup
+
 class HtmlParser(object):
     def __init__(self):
         self.downloader = HtmlDownloader.HtmlDownloader()
-        self.urls = UrlManager.UrlManager()
+        self.urls = UrlManager.UrlManager
+
+    def get_views(self,url):
+        html_cont = self.downloader.download(url)
+
+        soup = BeautifulSoup(html_cont, 'lxml', from_encoding='utf-8')
+
+        try:
+            cnt = soup.find_all("div",{'class':'description_wQiW_'})[0].text.split("：")[1].split("次")[0]
+        except IndexError:
+            return
+
+        return int(cnt)
 
     def get_lemmas(self,url):
         html_cont = self.downloader.download(url)
@@ -67,7 +80,6 @@ class HtmlParser(object):
                 edited_times = int(str2)
                 break
 
-
         editor_urls = []
         editor_name = []
         edit_times = []
@@ -80,7 +92,6 @@ class HtmlParser(object):
         for td in tds:
             if "submitTime" in td['class'][0]:
                 edit_times.append(td.text)
-
 
         return editor_name,editor_urls,edit_times,edited_times
 
