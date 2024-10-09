@@ -87,8 +87,8 @@ for url in urls:
             best_scores.append(best_score)
 
         answer += calculator.calculate(input_str=query,match_sentence_list=real_sentences,sentence_point_list=best_scores)
-    #
-    #     print(a * initial_beliefvalue + b * answer) # cost2
+
+    print(a * initial_beliefvalue + b * answer) # cost2
 
 
 
